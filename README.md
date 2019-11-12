@@ -1,11 +1,12 @@
-# Ajaxpaginator plugin for CakePHP
+# Ajaxpaginator плагин для CakePHP
 
-## Installation
+## Инсталяция
 
-You can install this plugin into your CakePHP application using [composer](https://getcomposer.org).
+Вы можете установить этот плагин в свое приложение CakePHP с помощью [composer](https://getcomposer.org).
 
-The recommended way to install composer packages is:
+Установка плагина:
 
 ```
-composer require your-name-here/Ajaxpaginator
+$ sudo composer require your-name-here/ajaxpaginator
+$ sudo composer dumpautoload
 ```
