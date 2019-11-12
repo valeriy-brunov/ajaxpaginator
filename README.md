@@ -41,6 +41,12 @@ $ sudo composer dumpautoload
 <?= $this->Paginator->next() ?>
 ```
 
+3. Далее необходимо инициализировать JavaScript код:
+
+```js
+$( '#list-pag' ).verticalPaginator({ viewLoader: 'preloader' });
+```
+
 
 
 
