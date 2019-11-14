@@ -17,11 +17,16 @@ $ sudo composer dumpautoload
 
 ```php
 <?php
+/**
+ * Plugin ajaxpaginator.
+ */
+?>
+<?php
     $this->Paginator->setTemplates([
         'nextActive' => '
         <input class="hide" value="{{url}}">' .
         '<div id="list-pag">' .
-            $this->element('preloader', ['loader_id' => 'sub-loader', 'w' => 56, 'h' => 56]) .
+            $this->element('ajaxpaginator.preloader', ['loader_id' => 'sub-loader', 'w' => 56, 'h' => 56]) .
         '</div>',
         'nextDisabled' => '',
     ]);
@@ -32,6 +37,11 @@ $ sudo composer dumpautoload
 2. В шаблон, который используется при возврате AJAX-запроса, вставить:
 
 ```php
+<?php
+/**
+ * Plugin ajaxpaginator.
+ */
+?>
 <?php
     $this->Paginator->setTemplates([
         'nextActive' => '<input class="hide" value="{{url}}">',
