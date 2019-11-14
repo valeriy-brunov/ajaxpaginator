@@ -13,7 +13,9 @@ $ sudo composer dumpautoload
 
 #### Инициализация
 
-1. Вставить в шаблон страницы (с расширением "ctp") следующий код:
+1. В основном шаблоне, который выводит листинг объектов, необходимо найти цикл отвечающий за вывод листинга. Обычно листинг выводится через цикл _foreach, for_ и др. Найденный цикл необходимо вырезать из шаблона и создать из него элемент. Вырезанный цикл в основном шаблоне необходимо заменить только что созданным элементом.
+
+2. Вставить в основной шаблон страницы следующий код:
 
 ```php
 <?php
@@ -34,7 +36,7 @@ $ sudo composer dumpautoload
 <?= $this->Paginator->next() ?>
 ```
 
-2. В шаблон, который используется при возврате AJAX-запроса, вставить:
+3. Создать в той же папке, где и находится основной шаблон страницы, дополнительный шаблон для _ajax_ запроса. Обычно, если основной шаблон называется _list.ctp_, то созданный _listajax.ctp_. Включить в шаблон _listajax.ctp_ созданный элемент из 1 пункта и добавить ниже строчку:
 
 ```php
 <?php
@@ -51,7 +53,33 @@ $ sudo composer dumpautoload
 <?= $this->Paginator->next() ?>
 ```
 
-3. В _JavaScript_ коде для конкретной страницы инициализировать ajaxpaginator:
+4. Подключить в основном шаблоне страницы необходимые файлы JavaScript, CSS.
+
+```php
+<?php
+/**
+ * CSS и JS.
+ */
+?>
+<?= $this->Html->script('Libajax.libajax', ['block' => true]) ?>
+<?= $this->Html->script('Ajaxpaginator.verticalPaginator', ['block' => true]) ?>
+```
+
+5. В контроллер необходимо добавить:
+
+```php
+if ($this->request->is('ajax')) {
+    // Основной шаблон.
+    $this->viewBuilder()->setLayout('ajax');
+    // Вид.
+    $this->render('listajax');
+    // В запросе методом GET токен отправляем в заголовке.
+    $token = $this->request->getParam('_csrfToken');
+    $this->response = $this->response->withHeader('X-CSRF-Token', $token);
+}
+```
+
+6. В _JavaScript_ коде для конкретной страницы инициализировать ajaxpaginator:
 
 ```js
 $( '#list-pag' ).verticalPaginator({ viewLoader: 'preloader' });
