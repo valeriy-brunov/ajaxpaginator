@@ -65,7 +65,7 @@ $ sudo composer dumpautoload
 <?= $this->Html->script('Ajaxpaginator.verticalPaginator', ['block' => true]) ?>
 ```
 
-5. В контроллер необходимо добавить:
+5. В самый низ контроллера добавить код:
 
 ```php
 if ($this->request->is('ajax')) {
