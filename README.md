@@ -7,7 +7,7 @@
 Установка плагина:
 
 ```
-$ sudo composer require your-name-here/ajaxpaginator
+$ sudo composer require valeriy-brunov/ajaxpaginator
 $ sudo composer dumpautoload
 ```
 
@@ -20,7 +20,7 @@ $ sudo composer dumpautoload
 ```php
 <?php
 /**
- * Plugin ajaxpaginator.
+ * Plugin ajaxpaginator for base template.
  */
 ?>
 <?php
@@ -41,7 +41,7 @@ $ sudo composer dumpautoload
 ```php
 <?php
 /**
- * Plugin ajaxpaginator.
+ * Plugin ajaxpaginator for ajax template.
  */
 ?>
 <?php
