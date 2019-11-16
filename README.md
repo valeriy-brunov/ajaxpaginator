@@ -23,17 +23,21 @@ $ sudo composer dumpautoload
  * Plugin ajaxpaginator for base template.
  */
 ?>
-<?php
-    $this->Paginator->setTemplates([
-        'nextActive' => '
-        <input class="hide" value="{{url}}">' .
-        '<div id="list-pag">' .
-            $this->element('ajaxpaginator.preloader', ['loader_id' => 'sub-loader', 'w' => 56, 'h' => 56]) .
-        '</div>',
-        'nextDisabled' => '',
-    ]);
-?>
-<?= $this->Paginator->next() ?>
+<?php if ($count_list_files > 0): ?>
+    <?php
+        $this->Paginator->setTemplates([
+            'nextActive' => '
+            <input class="hide" value="{{url}}">' .
+            '<div id="list-pag">' .
+                $this->element('ajaxpaginator.preloader', ['loader_id' => 'sub-loader', 'w' => 56, 'h' => 56]) .
+            '</div>',
+            'nextDisabled' => '',
+        ]);
+    ?>
+    <?= $this->Paginator->next() ?>
+<?php else: ?>
+    <?php echo "Листинг пустой."; ?>
+<?php endif; ?>
 ```
 
 3. Создать в той же папке, где и находится основной шаблон страницы, дополнительный шаблон для _ajax_ запроса. Обычно, если основной шаблон называется _list.ctp_, то созданный _listajax.ctp_. Включить в шаблон _listajax.ctp_ созданный элемент из 1 пункта и добавить ниже строчку:
